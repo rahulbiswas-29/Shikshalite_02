@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>SikshaLite</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f7f5ef;--card:#fff;--tx:#14122b;--mu:#6b6a80;--br:#e8e4d8;--pr:#3b2fd0;--ok:#16a34a;--bad:#dc2626;--soft:#efecff;--sh:0 8px 30px #1b165014}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0c1d;--card:#17152b;--tx:#f1eefc;--mu:#a09ebd;--br:#2b2848;--pr:#8f86ff;--soft:#221f45;--sh:0 8px 30px #0006}}
+:root[data-theme="dark"]{--bg:#0d0c1d;--card:#17152b;--tx:#f1eefc;--mu:#a09ebd;--br:#2b2848;--pr:#8f86ff;--soft:#221f45;--sh:0 8px 30px #0006}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;margin:0}h2{font-size:22px;margin-bottom:12px}h3{font-size:17px;margin:14px 0 8px}
+header{display:flex;align-items:center;gap:12px;padding:12px 20px;background:linear-gradient(110deg,#17124a,#3b2fd0);color:#fff}
+.logo{font:800 20px "Playfair Display",Georgia,serif}header small{opacity:.7;display:block;font-size:11px}.sp{flex:1}header button{background:#ffffff22;color:#fff;border-color:#ffffff44}
+main{max-width:1020px;margin:0 auto;padding:18px}
+.card{background:var(--card);border:1px solid var(--br);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:var(--sh)}
+button{font:inherit;cursor:pointer;border:1px solid var(--br);background:var(--card);color:var(--tx);padding:8px 14px;border-radius:10px}
+button.p{background:linear-gradient(135deg,var(--pr),#6a4de0);color:#fff;border:0;font-weight:600;box-shadow:0 6px 16px #3b2fd040}.d{color:var(--bad)}.d2{background:var(--bad)!important;box-shadow:none!important}button:disabled{opacity:.5}
+input,textarea,select{font:inherit;width:100%;padding:10px 12px;border:1px solid var(--br);border-radius:10px;background:var(--bg);color:var(--tx);margin:4px 0 10px}
+textarea{min-height:90px}label{font-size:13px;color:var(--mu);font-weight:500}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}.tabs button.on{background:var(--soft);border-color:var(--pr);color:var(--pr);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.stat{position:relative;overflow:hidden;background:var(--soft);border-radius:16px;padding:16px}.stat b{font:700 26px "Playfair Display",Georgia,serif;display:block}.stat small{color:var(--mu)}.stat::after{position:absolute;right:12px;top:8px;font-size:28px;opacity:.3}
+.s1::after{content:"🎓"}.s2::after{content:"📚"}.s3::after{content:"📈"}.s4::after{content:"🚀"}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--br)}.row:last-child{border:0}
+.tag{background:var(--soft);color:var(--pr);padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}.mu{color:var(--mu)}.ov{overflow-x:auto}
+.opt{display:block;padding:9px 11px;border:1px solid var(--br);border-radius:10px;margin:6px 0;cursor:pointer}
+.bar{height:10px;border-radius:6px;background:var(--br);overflow:hidden;min-width:80px;flex:1}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pr),#c9a227)}
+.code{font:700 22px ui-monospace,monospace;letter-spacing:.12em;background:linear-gradient(135deg,#f5d76e,#c9a227);color:#2a2100;padding:6px 14px;border-radius:10px;display:inline-block}
+.mono{display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,#f5d76e,#c9a227);color:#2a2100;font:800 18px "Playfair Display",serif;flex:none}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;background:radial-gradient(circle at 85% 20%,#c9a22744,transparent 50%),linear-gradient(135deg,#17124a,#3b2fd0 60%,#6a4de0);color:#fff;border-radius:26px;padding:34px;margin-bottom:18px;overflow:hidden}
+.hero h1{font-size:38px;line-height:1.1}.hero em{color:#f5d76e;font-style:normal}.hero p{opacity:.85}.art{width:100%;max-width:340px;margin:auto}
+.fl{animation:fl 4s ease-in-out infinite}.fl2{animation:fl 5s ease-in-out infinite reverse}@keyframes fl{50%{transform:translateY(-8px)}}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.chips span{background:#ffffff1f;padding:5px 12px;border-radius:99px;font-size:13px}
+.auth{max-width:520px;margin:auto}.end{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+.ov2{position:fixed;inset:0;background:#0009;display:grid;place-items:center;z-index:20;padding:20px;overflow:auto}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:10px;z-index:30;max-width:90%}
+.thumb{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:26px;flex:none;object-fit:cover}
+.banner{display:flex;align-items:center;gap:14px;padding:22px;border-radius:18px;color:#fff;margin:12px 0}.banner h2{margin:0;color:#fff}.banner span{font-size:42px}
+.steps{display:flex;gap:6px;margin:0 0 14px}.steps div{flex:1;text-align:center;font-size:12px;color:var(--mu)}.steps i{display:block;height:6px;border-radius:4px;background:var(--br);margin-bottom:4px}.steps .d1 i{background:var(--pr)}.steps .d1{color:var(--pr);font-weight:600}
+.imgs{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.imgs div{position:relative}.imgs img{width:110px;height:80px;object-fit:cover;border-radius:10px}.imgs b{position:absolute;top:3px;right:5px;cursor:pointer;background:#000a;color:#fff;border-radius:99px;padding:0 6px}
+img.vis{max-width:100%;border-radius:14px;border:1px solid var(--br);margin:6px 0;background:#fff}
+table{border-collapse:collapse;width:100%}td,th{text-align:left;padding:8px;border-bottom:1px solid var(--br)}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding:22px}.hero h1{font-size:28px}}
+</style></head><body>
+<header><div id="brand" style="display:flex;gap:10px;align-items:center"></div><div class="sp"></div><div id="who"></div></header>
+<main id="app"></main><div id="toast" class="toast" style="display:none"></div>
+<script>
+const $=s=>document.querySelector(s),app=$("#app"),dg=s=>String(s||"").replace(/\D/g,"");
+const E=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const COLS=["inst","teachers","students","courses","attempts","subs"],D=Object.fromEntries(COLS.map(c=>[c,[]]));
+const S0={role:null,user:null,inst:null,tab:"ov",view:null,otp:null,pend:null,lm:"student",busy:false,draft:null,reg:null};let S={...S0},db=null,sample=null;
+const reset=()=>{S={...S0}};
+const I=()=>D.inst.find(i=>i.id===S.inst),mine=c=>D[c].filter(x=>x.inst===S.inst);
+const sc=()=>mine("courses").filter(c=>S.role!=="teacher"||c.tid===S.user.id);
+const att=(cid,t)=>D.attempts.find(a=>a.id===S.user.id+"_"+cid+"_"+t);
+const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0,pc=a=>Math.round(a.score/a.total*100);
+const uid=p=>p+Math.random().toString(36).slice(2,8).toUpperCase();
+function toast(m,t=4000){const x=$("#toast");x.textContent=m;x.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>x.style.display="none",t)}
+async function save(col,id,data){const i=D[col].findIndex(x=>x.id===id),r={...data,id};if(i>=0)D[col][i]=r;else D[col].push(r);
+  try{if(db)await db.collection(col).doc(id).set(r)}catch(e){toast("Saved locally only (sync unavailable)")}}
+async function rm(col,id){D[col]=D[col].filter(x=>x.id!==id);try{if(db)await db.collection(col).doc(id).delete()}catch(e){}}
+async function wipe(f){for(const a of mine("attempts").filter(f))await rm("attempts",a.id);for(const s of mine("subs").filter(f))await rm("subs",s.id)}
+const killCourse=async id=>{await wipe(x=>x.cid===id);await rm("courses",id)},killStu=async id=>{await wipe(x=>x.sid===id);await rm("students",id)};
+const killTch=async id=>{for(const c of D.courses.filter(c=>c.tid===id))await killCourse(c.id);await rm("teachers",id)};
+async function init(){
+  try{db=await claude.use("db")}catch(e){}try{sample=await claude.use("sample")}catch(e){}
+  if(db)for(const c of COLS)try{db.collection(c).onSnapshot(s=>{D[c]=s.docs.map(d=>({...d.data(),id:d.id}));if(S.role&&!S.busy&&!document.activeElement?.matches("input,textarea"))render()},()=>{})}catch(e){}
+  render()}
+/* ---------- helpers ---------- */
+const EM=["🧬","🔭","📐","🌍","💡","🧪","📜","🎨"],hs=t=>[...String(t)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7);
+const grad=t=>{const h=hs(t)%360;return `linear-gradient(135deg,hsl(${h} 70% 55%),hsl(${(h+50)%360} 70% 45%))`},icon=t=>EM[hs(t)%EM.length];
+const lg=(i,s=36)=>i&&i.logo?`<img src="${i.logo}" style="width:${s}px;height:${s}px;border-radius:10px;object-fit:cover;background:#fff">`:`<span class="mono" style="width:${s}px;height:${s}px">${E((i&&i.name||"S")[0])}</span>`;
+const thumb=c=>c.images&&c.images[0]?`<img class="thumb" src="${c.images[0]}">`:`<div class="thumb" style="background:${grad(c.title)}">${icon(c.title)}</div>`;
+function shrink(f,max,type,cb){const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);cb(c.toDataURL(type,.72))};im.src=r.result};r.readAsDataURL(f)}
+function pick(max,type,cb,multi){const i=document.createElement("input");i.type="file";i.accept="image/*";i.multiple=!!multi;i.onchange=()=>[...i.files].forEach(f=>shrink(f,max,type,cb));i.click()}
+const ov=h=>{const o=document.createElement("div");o.className="ov2";o.innerHTML=h;document.body.appendChild(o);return o};
+function ask(msg,fn){const o=ov(`<div class="card" style="max-width:380px"><h3>🗑️ Are you sure?</h3><p class="mu">${E(msg)}</p><div class="end"><button id="n">Cancel</button><button class="p d2" id="y">Confirm</button></div></div>`);o.querySelector("#n").onclick=()=>o.remove();o.querySelector("#y").onclick=async()=>{o.remove();await fn();render();toast("Done")}}
+function modal(t,f,ok){const o=ov(`<div class="card" style="max-width:420px;width:100%"><h3>${t}</h3>${f.map(x=>`<label>${x.l}</label>${x.ta?`<textarea id="m_${x.k}">${E(x.v||"")}</textarea>`:`<input id="m_${x.k}" value="${E(x.v||"")}">`}`).join("")}<div class="end"><button id="n">Cancel</button><button class="p" id="y">Save</button></div></div>`);
+  o.querySelector("#n").onclick=()=>o.remove();o.querySelector("#y").onclick=async()=>{const v={};f.forEach(x=>v[x.k]=o.querySelector("#m_"+x.k).value.trim());o.remove();await ok(v);render();toast("Saved ✅")}}
+const mat2txt=m=>m.map(x=>(x.h?`## ${x.h}\n`:"")+x.p).join("\n\n");
+const txt2mat=t=>t.split(/\n\s*\n/).map(b=>b.trim()).filter(Boolean).map(b=>{const m=b.match(/^## (.*)\n([\s\S]*)$/);return m?{h:m[1],p:m[2]}:{h:"",p:b}});
+const quiz2txt=q=>q.map(x=>[x.q,...x.o,x.a+1].join(" | ")).join("\n");
+const txt2quiz=t=>t.split("\n").map(l=>l.split("|").map(x=>x.trim())).filter(p=>p.length>=6).map(p=>({q:p[0],o:p.slice(1,5),a:Math.min(3,Math.max(0,+p[5]-1||0))}));
+function gainOf(ids){const set=new Set(ids||sc().map(c=>c.id)),by={};mine("attempts").filter(a=>set.has(a.cid)).forEach(a=>{(by[a.sid+a.cid]??={})[a.type]=pc(a)});
+  const g=Object.values(by).filter(x=>x.pre!=null&&x.post!=null);return{n:g.length,pre:avg(g.map(x=>x.pre)),post:avg(g.map(x=>x.post)),gain:avg(g.map(x=>x.post-x.pre))}}
+function ring(v,t){const C=2*Math.PI*26,p=t?v/t:0;return `<svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" style="stroke:var(--br)" stroke-width="7"/><circle cx="32" cy="32" r="26" fill="none" style="stroke:var(--pr)" stroke-width="7" stroke-linecap="round" stroke-dasharray="${C*p} ${C}" transform="rotate(-90 32 32)"/><text x="32" y="37" text-anchor="middle" font-size="14" font-weight="700" style="fill:var(--tx)">${v}/${t}</text></svg>`}
+function gainChart(){const cs=sc().slice(0,6);if(!cs.length)return"";const h=170,g=560/cs.length;
+  return `<div class="card"><h2>Pre-test vs post-test</h2><svg viewBox="0 0 600 ${h+50}" style="width:100%">${[0,50,100].map(v=>`<line x1="34" x2="590" y1="${h+10-v*h/100}" y2="${h+10-v*h/100}" style="stroke:var(--br)"/><text x="28" y="${h+14-v*h/100}" text-anchor="end" font-size="10" style="fill:var(--mu)">${v}</text>`).join("")}${cs.map((c,i)=>{const x=gainOf([c.id]),cx=40+g*i+g/2,a=x.pre*h/100,b=x.post*h/100;return `<rect x="${cx-24}" y="${h+10-a}" width="22" height="${a}" rx="4" style="fill:var(--mu);opacity:.5"/><rect x="${cx+2}" y="${h+10-b}" width="22" height="${b}" rx="4" style="fill:var(--pr)"/><text x="${cx}" y="${h+28}" text-anchor="middle" font-size="11" style="fill:var(--tx)">${E(c.title.slice(0,14))}</text>`}).join("")}</svg><small class="mu">▮ grey = before &nbsp; ▮ purple = after</small></div>`}
+/* ---------- shell ---------- */
+function logout(){reset();render()}
+function render(){const i=S.inst&&I();
+  $("#brand").innerHTML=i?`${lg(i,38)}<div><div class="logo">${E(i.name)}</div><small>Powered by SikshaLite</small></div>`:`<svg width="34" height="34" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#f5d76e"/><path d="M16 8 5 13l11 5 9-4.1V21h2v-8z" fill="#17124a"/><path d="M9 17v4c0 2 3.5 4 7 4s7-2 7-4v-4l-7 3.2z" fill="#17124a" opacity=".8"/></svg><div><div class="logo">SikshaLite</div><small>Learning that is measured</small></div>`;
+  $("#who").innerHTML=S.user?`<span>${E(S.user.name)} · ${S.role}</span> <button onclick="logout()">Logout</button>`:"";
+  if(S.role&&!i){reset();return login()}
+  if(!S.role)return login();S.role==="student"?student():official()}
+/* ---------- login ---------- */
+const HERO=`<svg class="art" viewBox="0 0 360 260"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5d76e"/><stop offset="1" stop-color="#c9a227"/></linearGradient></defs><circle cx="190" cy="120" r="110" fill="#ffffff14"/><circle cx="190" cy="120" r="70" fill="#ffffff14"/><g class="fl"><path d="M80 110 190 50l110 60z" fill="url(#g)"/><rect x="95" y="115" width="190" height="14" fill="#fff"/><g fill="#fff"><rect x="105" y="132" width="20" height="80" rx="3"/><rect x="145" y="132" width="20" height="80" rx="3"/><rect x="185" y="132" width="20" height="80" rx="3"/><rect x="225" y="132" width="20" height="80" rx="3"/><rect x="262" y="132" width="20" height="80" rx="3"/></g><rect x="85" y="214" width="210" height="16" rx="4" fill="url(#g)"/></g><g class="fl2"><rect x="20" y="170" width="26" height="60" rx="5" fill="#8f86ff"/><rect x="52" y="140" width="26" height="90" rx="5" fill="#f5d76e"/><rect x="316" y="150" width="26" height="80" rx="5" fill="#22d3b0"/></g><text x="300" y="50" font-size="26" class="fl">⭐</text><text x="40" y="90" font-size="22" class="fl2">✨</text></svg>`;
+function login(m=S.lm){S.lm=m;const T=(k,l)=>`<button class="${m==k?"on":""}" onclick="login('${k}')">${l}</button>`;let f;
+  if(m=="student")f=`<label>Your unique Student ID</label><input id="sid" placeholder="e.g. STU-AB12CD" onkeydown="event.key=='Enter'&&studentLogin()"><button class="p" onclick="studentLogin()">Enter</button><p class="mu" style="font-size:13px">No password. Your teacher registered this ID for you in your institution.</p>`;
+  else if(m=="official")f=`<label>Institution code</label><input id="ic" placeholder="INS-XXXXXX" value="${E(S.ocode||"")}" ${S.otp?"disabled":""}><label>Registered mobile number</label><input id="om" inputmode="tel" value="${E(S.omob||"")}" ${S.otp?"disabled":""}>${S.otp?`<label>6-digit OTP</label><input id="otp" inputmode="numeric" maxlength="6"><button class="p" onclick="verifyOtp()">Verify &amp; login</button> <button onclick="S.otp=null;login('official')">Change</button>`:`<button class="p" onclick="sendOtp()">Send OTP</button>`}<p class="mu" style="font-size:12px">Demo mode: the OTP appears on screen. Connect an SMS provider (MSG91, Twilio) for real delivery.</p>`;
+  else{S.reg??={logo:""};f=`<label>Institution name</label><input id="r_n"><label>About the institution</label><textarea id="r_d" style="min-height:70px"></textarea><label>Address / city</label><input id="r_a"><div class="grid"><div><label>Admin name</label><input id="r_an"></div><div><label>Admin mobile (for OTP)</label><input id="r_am" inputmode="tel"></div></div><label>Logo</label><div class="imgs"><span id="lp">${lg({logo:S.reg.logo,name:"?"},48)}</span><button onclick="pickLogo()">Upload logo</button></div><br><button class="p" onclick="regInst()">Create institution &amp; get code</button>`}
+  app.innerHTML=`<div class="hero"><div><h1>Learning that is <em>measured</em>.</h1><p>Teachers publish study material, quizzes and assignments; every student gets a pre-test and post-test to prove real learning gain.</p><div class="chips"><span>👩‍🏫 Teacher-wise subjects</span><span>🖼️ Images &amp; diagrams</span><span>📝 Pre &amp; post tests</span><span>🤖 AI courses</span></div></div>${HERO}</div><div class="card auth"><div class="tabs">${T("student","🎓 Student")}${T("official","🔑 Officials login")}${T("register","➕ Register institute")}</div>${f}</div>`}
+const pickLogo=()=>pick(160,"image/png",d=>{S.reg.logo=d;$("#lp").innerHTML=lg({logo:d},48)});
+function studentLogin(){const id=$("#sid").value.trim().toUpperCase(),s=D.students.find(x=>x.id===id);
+  if(!s)return toast("ID not found. Check with your teacher.");S.role="student";S.user=s;S.inst=s.inst;S.view=null;render()}
+function sendOtp(){const c=$("#ic").value.trim().toUpperCase(),m=dg($("#om").value),i=D.inst.find(x=>x.id===c);
+  if(!i)return toast("Institution code not found");let p=dg(i.adminMobile)===m?{role:"admin",user:{id:"admin",name:i.adminName||"Admin"}}:null;
+  const t=D.teachers.find(t=>t.inst===c&&dg(t.mobile)===m);if(!p&&t)p={role:"teacher",user:t};
+  if(!p)return toast("This mobile number is not registered in that institution");
+  S.pend=p;S.ocode=c;S.omob=$("#om").value;S.otp=String(Math.floor(100000+Math.random()*900000));login("official");toast("Demo OTP: "+S.otp,15000)}
+function verifyOtp(){if($("#otp").value.trim()!==S.otp)return toast("Wrong OTP");const p=S.pend,c=S.ocode;reset();S.role=p.role;S.user=p.user;S.inst=c;render()}
+async function regInst(){const g=k=>$("#"+k).value.trim();if(!g("r_n")||!g("r_am"))return toast("Institution name and admin mobile are required");
+  let c;do c="INS-"+Math.random().toString(36).slice(2,8).toUpperCase();while(D.inst.some(i=>i.id===c));
+  await save("inst",c,{inst:c,name:g("r_n"),details:g("r_d"),address:g("r_a"),adminName:g("r_an")||"Admin",adminMobile:g("r_am"),logo:S.reg.logo||"",at:Date.now()});
+  const n=g("r_an")||"Admin";reset();S.role="admin";S.user={id:"admin",name:n};S.inst=c;render();
+  const o=ov(`<div class="card" style="max-width:400px;text-align:center"><h2>🎉 Institution created</h2><p class="mu">Your institution code (share it only with your teachers):</p><div class="code">${c}</div><p class="mu" style="font-size:13px">Log in later with this code and your mobile number.</p><button class="p" id="ok">Continue</button></div>`);o.querySelector("#ok").onclick=()=>o.remove()}
+/* ---------- official ---------- */
+function official(){const a=S.role==="admin",tabs=[["ov","📊 Overview"],["new","✨ New course"],["crs","📚 Courses"],["stu","🎓 Students"],["sub","📝 Submissions"],...(a?[["tch","👩‍🏫 Teachers"],["ins","🏫 Institute"]]:[])];
+  app.innerHTML=`<div class="tabs">${tabs.map(([k,l])=>`<button class="${S.tab==k?"on":""}" onclick="S.tab='${k}';if('${k}'!='new')S.draft=null;render()">${l}</button>`).join("")}</div><div id="pane"></div>`;
+  ({ov:oOver,new:oNew,crs:oCrs,stu:oStu,sub:oSub,tch:oTch,ins:oIns})[S.tab]()}
+function oOver(){const g=gainOf(),i=I();
+  $("#pane").innerHTML=`<div class="card" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">${lg(i,60)}<div style="flex:1;min-width:180px"><h2 style="margin:0">${E(i.name)}</h2><span class="mu">${E(i.address||"")}</span><p class="mu" style="margin:6px 0 0">${E(i.details||"")}</p></div><div><small class="mu">Institution code</small><br><span class="code">${i.id}</span></div></div>
+  <div class="grid"><div class="stat s1"><b>${mine("students").length}</b><small>Students</small></div><div class="stat s2"><b>${sc().length}</b><small>Courses</small></div><div class="stat s3"><b>${Math.round(g.pre)}% → ${Math.round(g.post)}%</b><small>Avg pre → post</small></div><div class="stat s4"><b>${g.gain>=0?"+":""}${Math.round(g.gain)} pts</b><small>Learning gain (${g.n} learners)</small></div></div><div style="margin-top:16px">${gainChart()}</div>`}
+function oCrs(){$("#pane").innerHTML=`<div class="card"><h2>Courses</h2>${sc().map(c=>{const x=gainOf([c.id]);return`<div class="row"><div style="display:flex;gap:12px;align-items:center">${thumb(c)}<div><b>${E(c.title)}</b> <span class="tag">${E(c.subject||"")}</span><br><small class="mu">${E(c.tname||"")} · ${x.n} learners · ${Math.round(x.pre)}% → ${Math.round(x.post)}%</small></div></div><div><button onclick="editCourse('${c.id}')">✏️ Edit</button> <button onclick="resetCourse('${c.id}')">↺ Reset</button> <button class="d" onclick="delCourse('${c.id}')">🗑️ Delete</button></div></div>`}).join("")||'<p class="mu">No courses yet. Create one in “New course”.</p>'}</div>`}
+const delCourse=id=>ask("This course and all its scores and submissions will be deleted.",()=>killCourse(id));
+const resetCourse=id=>ask("All scores and submissions for this course will be cleared.",()=>wipe(x=>x.cid===id));
+function blank(){return{title:"",subject:S.role==="teacher"?S.user.subject||"":"",summary:"",material:"",quiz:"",atitle:"Assignment",atask:"",images:[],svg:""}}
+function editCourse(id){const c=D.courses.find(x=>x.id===id);S.draft={id,title:c.title,subject:c.subject||"",summary:c.summary||"",material:mat2txt(c.material||[]),quiz:quiz2txt(c.quiz||[]),atitle:c.assignment?.title||"Assignment",atask:c.assignment?.task||"",images:[...(c.images||[])],svg:c.svg||"",ai:c.ai};S.tab="new";render()}
+function oNew(){const d=S.draft??=blank(),b=k=>`oninput="S.draft.${k}=this.value"`;
+  $("#pane").innerHTML=`<div class="card"><h2>🤖 Generate with AI</h2><p class="mu">Type a topic. AI fills the form below with study material, a quiz, an assignment and a diagram. Review and edit before saving.</p>${aiCard()}<label>Topic</label><input id="topic" placeholder="e.g. Photosynthesis, Class 8"><button class="p" id="gb" onclick="aiGen()">Generate everything</button><p id="gs" class="mu"></p></div>
+  <div class="card"><h2>${d.id?"✏️ Edit course":"✍️ Course details"}</h2><div class="grid"><div><label>Course title</label><input value="${E(d.title)}" ${b("title")}></div><div><label>Subject</label><input value="${E(d.subject)}" ${b("subject")}></div></div><label>Short summary</label><input value="${E(d.summary)}" ${b("summary")}>
+  <label>Study material — blank line between paragraphs; start a block with “## Heading” for a section title</label><textarea style="min-height:160px" ${b("material")}>${E(d.material)}</textarea>
+  <label>Images (up to 4)</label><div class="imgs">${d.images.map((x,i)=>`<div><img src="${x}"><b onclick="S.draft.images.splice(${i},1);render()">✕</b></div>`).join("")}${d.svg?`<div><img src="data:image/svg+xml;utf8,${encodeURIComponent(d.svg)}"><b onclick="S.draft.svg='';render()">✕</b></div>`:""}${d.images.length<4?`<button onclick="addImg()">➕ Add image</button>`:""}</div>
+  <label style="display:block;margin-top:12px">Quiz — one per line: Question | A | B | C | D | correct option (1-4). Used for both pre-test and post-test.</label><textarea style="min-height:140px" ${b("quiz")}>${E(d.quiz)}</textarea>
+  <label>Assignment title</label><input value="${E(d.atitle)}" ${b("atitle")}><label>Assignment task</label><textarea ${b("atask")}>${E(d.atask)}</textarea>
+  <button class="p" onclick="saveCourse()">${d.id?"Save changes":"Publish course"}</button> ${d.id?`<button onclick="S.draft=null;S.tab='crs';render()">Cancel</button>`:""}</div>`}
+const addImg=()=>pick(640,"image/jpeg",d=>{if(S.draft.images.length<4){S.draft.images.push(d);render()}},1);
+const AIS=()=>{try{return JSON.parse(localStorage.getItem("ai_cfg")||"{}")}catch(e){return{}}};
+async function askAI(prompt){
+  if(sample)return sample.json(prompt,{modelTier:"complex"});
+  const c=AIS();if(!c.p)throw new Error("Set up an AI engine in the AI settings above");
+  const J={"Content-Type":"application/json"},go=async(u,h,b)=>{const r=await fetch(u,{method:"POST",headers:h,body:JSON.stringify(b)}),j=await r.json();if(!r.ok)throw new Error(j.error?.message||j.error||r.status);return j};let t;
+  if(c.p==="backend")t=(await go(c.url||"/api/ai",J,{prompt})).text;
+  else if(c.p==="openai"){const j=await go((c.url||"https://api.openai.com/v1")+"/chat/completions",{...J,Authorization:"Bearer "+c.key},{model:c.model||"gpt-4o-mini",messages:[{role:"user",content:prompt}],response_format:{type:"json_object"}});t=j.choices[0].message.content}
+  else if(c.p==="gemini"){const j=await go(`https://generativelanguage.googleapis.com/v1beta/models/${c.model||"gemini-2.0-flash"}:generateContent?key=${c.key}`,J,{contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:"application/json"}});t=j.candidates[0].content.parts[0].text}
+  else{const j=await go("https://api.anthropic.com/v1/messages",{...J,"x-api-key":c.key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},{model:c.model||"claude-sonnet-5-5",max_tokens:4000,messages:[{role:"user",content:prompt}]});t=j.content[0].text}
+  return JSON.parse(t.replace(/^```json|```$/gm,"").trim())}
+function aiCard(){if(sample)return `<p><span class="tag">🤖 AI engine: Claude — built into this platform, no setup needed</span></p>`;const c=AIS();
+  return `<details ${c.p?"":"open"}><summary class="mu" style="cursor:pointer">⚙️ AI engine: ${c.p?E(c.p):"not set up"} — settings</summary><label>Provider</label><select id="ap">${[["backend","My backend (/api/ai)"],["openai","OpenAI / compatible"],["gemini","Google Gemini"],["anthropic","Anthropic Claude"]].map(([k,l])=>`<option value="${k}" ${c.p==k?"selected":""}>${l}</option>`).join("")}</select><label>Model (optional)</label><input id="am" value="${E(c.model||"")}"><label>API key (stored only on this device; not needed for “My backend”)</label><input id="ak" type="password" value="${E(c.key||"")}"><label>Custom URL (optional)</label><input id="au" value="${E(c.url||"")}"><button onclick="saveAI()">Save AI settings</button><p class="mu" style="font-size:12px">Safest: use “My backend” so the key stays on the server.</p></details>`}
+const saveAI=()=>{try{localStorage.setItem("ai_cfg",JSON.stringify({p:$("#ap").value,model:$("#am").value.trim(),key:$("#ak").value.trim(),url:$("#au").value.trim()}));toast("AI settings saved ✅");render()}catch(e){toast("Could not save settings")}};
+async function aiGen(){const t=$("#topic").value.trim();if(!t)return toast("Enter a topic");
+  S.busy=true;$("#gb").disabled=true;$("#gs").textContent="Generating… about a minute.";
+  try{const r=await askAI(`You are an expert teacher. Create a complete mini-course on: "${t}". Subject: ${S.draft.subject}.
+Return ONLY JSON: {"title":str,"summary":str,"material":[{"h":str,"p":str}] (4-6 sections, clear and accurate),"quiz":[{"q":str,"o":[4 strings],"a":0-3 index}] (8 questions testing the material),"assignment":{"title":str,"task":str},"svg":"self-contained educational diagram as SVG markup, viewBox 0 0 600 340, labelled, no scripts, no external refs"}`);
+    Object.assign(S.draft,{title:r.title||t,summary:r.summary||"",material:mat2txt(r.material||[]),quiz:quiz2txt((r.quiz||[]).filter(q=>q.o?.length==4)),atitle:r.assignment?.title||"Assignment",atask:r.assignment?.task||"",svg:r.svg||"",ai:true});toast("Draft ready — review and save")}catch(e){toast("Generation failed: "+(e.message||"try again"))}
+  S.busy=false;render()}
+async function saveCourse(){const d=S.draft;if(!d.title.trim())return toast("Add a title");const quiz=txt2quiz(d.quiz);if(!quiz.length)return toast("Add at least one quiz question");
+  const id=d.id||uid("C"),old=d.id&&D.courses.find(c=>c.id===d.id);
+  await save("courses",id,{inst:S.inst,tid:old?.tid||S.user.id,tname:old?.tname||S.user.name,subject:d.subject,title:d.title.trim(),summary:d.summary,material:txt2mat(d.material),quiz,assignment:{title:d.atitle,task:d.atask},images:d.images,svg:d.svg,ai:!!(d.ai||old?.ai),at:old?.at||Date.now()});
+  S.draft=null;S.tab="crs";toast("Saved ✅");render()}
+function oStu(){$("#pane").innerHTML=`<div class="card"><h2>Register students</h2><label>One per line: Name, Class (optional). A unique ID is generated for each and linked to this institution.</label><textarea id="sn"></textarea><button class="p" onclick="addStu()">Generate IDs</button></div>
+  <div class="card ov"><h2>Registered (${mine("students").length})</h2><table><tr><th>Name</th><th>Class</th><th>Unique ID</th><th>Tests</th><th></th></tr>${mine("students").map(s=>`<tr><td>${E(s.name)}</td><td>${E(s.cls||"")}</td><td><b>${s.id}</b></td><td>${mine("attempts").filter(a=>a.sid===s.id).length}</td><td style="white-space:nowrap"><button onclick="editStu('${s.id}')">✏️</button> <button onclick="resetStu('${s.id}')">↺</button> <button class="d" onclick="delStu('${s.id}')">🗑️</button></td></tr>`).join("")}</table></div>`}
+async function addStu(){const L=$("#sn").value.split("\n").map(x=>x.trim()).filter(Boolean);for(const l of L){const[n,c]=l.split(",").map(x=>x.trim());await save("students",uid("STU-"),{inst:S.inst,name:n,cls:c||"",by:S.user.name})}render();toast("IDs generated ✅")}
+const editStu=id=>{const s=D.students.find(x=>x.id===id);modal("Edit student",[{k:"n",l:"Name",v:s.name},{k:"c",l:"Class / section",v:s.cls}],v=>save("students",id,{...s,name:v.n||s.name,cls:v.c}))};
+const delStu=id=>ask("This student and all their scores and submissions will be deleted.",()=>killStu(id));
+const resetStu=id=>ask("All scores and submissions of this student will be cleared. The ID stays.",()=>wipe(x=>x.sid===id));
+function oSub(){const ids=new Set(sc().map(c=>c.id));$("#pane").innerHTML=`<div class="card"><h2>Assignment submissions</h2>${mine("subs").filter(s=>ids.has(s.cid)).map(s=>{const c=D.courses.find(c=>c.id===s.cid);return`<div class="row" style="align-items:flex-start"><div style="flex:1;min-width:220px"><b>${E(s.name)}</b> <span class="tag">${E(c?.title||"")}</span><br><span style="white-space:pre-wrap">${E(s.text)}</span>${s.fb?`<br><small class="mu">💬 ${E(s.fb)}</small>`:""}</div><div><small class="mu">${new Date(s.at).toLocaleString()}</small><br><button onclick="feedback('${s.id}')">✏️ Feedback</button> <button class="d" onclick="delSub('${s.id}')">🗑️</button></div></div>`}).join("")||'<p class="mu">Nothing submitted yet.</p>'}</div>`}
+const feedback=id=>{const s=D.subs.find(x=>x.id===id);modal("Feedback / marks",[{k:"f",l:"Feedback",ta:1,v:s.fb}],v=>save("subs",id,{...s,fb:v.f}))};
+const delSub=id=>ask("This submission will be deleted.",()=>rm("subs",id));
+function oTch(){$("#pane").innerHTML=`<div class="card"><div class="row" style="border:0"><h2 style="margin:0">Teachers</h2><button class="p" onclick="addTch()">➕ Add teacher</button></div>${mine("teachers").map(t=>`<div class="row"><div><b>${E(t.name)}</b> <span class="tag">${E(t.subject||"")}</span><br><small class="mu">📱 ${E(t.mobile)} · ${D.courses.filter(c=>c.tid===t.id).length} courses</small></div><div><button onclick="editTch('${t.id}')">✏️ Edit</button> <button class="d" onclick="delTch('${t.id}')">🗑️ Delete</button></div></div>`).join("")||'<p class="mu">No teachers yet. Each teacher logs in with your institution code and their mobile number.</p>'}</div>`}
+const addTch=()=>modal("Add teacher",[{k:"n",l:"Name"},{k:"s",l:"Subject"},{k:"m",l:"Mobile number (OTP login)"}],v=>v.n&&v.m?save("teachers",uid("T"),{inst:S.inst,name:v.n,subject:v.s,mobile:v.m}):toast("Name and mobile are required"));
+const editTch=id=>{const t=D.teachers.find(x=>x.id===id);modal("Edit teacher",[{k:"n",l:"Name",v:t.name},{k:"s",l:"Subject",v:t.subject},{k:"m",l:"Mobile",v:t.mobile}],async v=>{await save("teachers",id,{...t,name:v.n||t.name,subject:v.s,mobile:v.m||t.mobile});for(const c of D.courses.filter(c=>c.tid===id))await save("courses",c.id,{...c,tname:v.n||t.name,subject:v.s})})};
+const delTch=id=>ask("This teacher and all their courses, scores and submissions will be deleted.",()=>killTch(id));
+function oIns(){const i=I();S.reg??={logo:i.logo||""};
+  $("#pane").innerHTML=`<div class="card"><h2>🏫 Institution profile</h2><p>Code: <span class="code">${i.id}</span></p><label>Name</label><input id="i_n" value="${E(i.name)}"><label>About</label><textarea id="i_d">${E(i.details||"")}</textarea><label>Address</label><input id="i_a" value="${E(i.address||"")}"><div class="grid"><div><label>Admin name</label><input id="i_an" value="${E(i.adminName||"")}"></div><div><label>Admin mobile</label><input id="i_am" value="${E(i.adminMobile||"")}"></div></div>
+  <label>Logo</label><div class="imgs"><span id="lp">${lg({logo:S.reg.logo,name:i.name},56)}</span><button onclick="pickLogo()">Change logo</button></div><br><button class="p" onclick="saveIns()">Save changes</button></div>
+  <div class="card"><h2 class="d">⚠️ Danger zone</h2><p class="mu">Only affects your institution.</p><div class="row" style="border:0"><button onclick="resetAll()">↺ Reset all scores &amp; submissions</button><button class="d" onclick="delAllStu()">🗑️ Delete all students</button><button class="d" onclick="delInst()">🗑️ Delete entire institution</button></div></div>`}
+async function saveIns(){const i=I(),n=$("#i_n").value.trim();if(!n)return toast("Name needed");await save("inst",i.id,{...i,name:n,details:$("#i_d").value,address:$("#i_a").value,adminName:$("#i_an").value,adminMobile:$("#i_am").value,logo:S.reg.logo});S.user={...S.user,name:$("#i_an").value||S.user.name};toast("Saved ✅");render()}
+const resetAll=()=>ask("Every quiz score and submission in your institution will be cleared.",()=>wipe(()=>1));
+const delAllStu=()=>ask("All students and their results will be deleted.",async()=>{for(const s of mine("students"))await killStu(s.id)});
+const delInst=()=>ask("The entire institution — teachers, students, courses and results — will be permanently deleted.",async()=>{for(const s of mine("students"))await killStu(s.id);for(const c of mine("courses"))await killCourse(c.id);await wipe(()=>1);for(const t of mine("teachers"))await rm("teachers",t.id);await rm("inst",S.inst);reset()});
+/* ---------- student ---------- */
+function student(){const c=D.courses.find(x=>x.id===S.view&&x.inst===S.inst);if(c)return course(c);
+  const cs=mine("courses"),by={};mine("attempts").filter(a=>a.sid===S.user.id).forEach(a=>(by[a.cid]??={})[a.type]=pc(a));
+  const v=Object.values(by).filter(x=>x.pre!=null&&x.post!=null),mg=v.length?avg(v.map(x=>x.post-x.pre)):null,gr={};
+  cs.forEach(c=>(gr[c.tid]??={n:c.tname,s:c.subject,l:[]}).l.push(c));
+  app.innerHTML=`<div class="card"><h2>Hi ${E(S.user.name)} 👋</h2><div class="grid"><div class="stat" style="display:flex;align-items:center;gap:12px">${ring(cs.filter(c=>att(c.id,"post")).length,cs.length)}<small>Courses completed</small></div><div class="stat s3"><b>${mg==null?"–":(mg>=0?"+":"")+Math.round(mg)+" pts"}</b><small>Your learning gain</small></div><div class="stat s1"><b style="font-size:20px">${S.user.id}</b><small>Your ID</small></div></div></div>`+
+  (Object.values(gr).map(g=>`<div class="card"><h2>${E(g.n||"Teacher")} <span class="tag">${E(g.s||"")}</span></h2>${g.l.map(c=>{const pre=att(c.id,"pre"),post=att(c.id,"post");return`<div class="row"><div style="display:flex;gap:12px;align-items:center">${thumb(c)}<div><b>${E(c.title)}</b> ${c.ai?'<span class="tag">AI</span>':""}<br><small class="mu">${E(c.summary||"")}</small></div></div><div>${post?`<span class="tag">${pc(pre)}% → ${pc(post)}%</span> `:pre?'<span class="tag">In progress</span> ':""}<button class="p" onclick="S.view='${c.id}';render()">${pre?"Continue":"Start"}</button></div></div>`}).join("")}</div>`).join("")||'<div class="card mu">No courses yet — your teachers will add them here.</div>')}
+const quizHtml=c=>c.quiz.map((q,i)=>`<div style="margin:12px 0"><b>${i+1}. ${E(q.q)}</b>${q.o.map((o,j)=>`<label class="opt" style="color:var(--tx);font-size:15px"><input type="radio" name="q${i}" value="${j}" style="width:auto;margin:0 8px 0 0">${E(o)}</label>`).join("")}</div>`).join("");
+function course(c){const pre=att(c.id,"pre"),post=att(c.id,"post"),sub=D.subs.find(s=>s.id===S.user.id+"_"+c.id);
+  const mat=`<h3>📖 Study material</h3>${(c.images||[]).map(x=>`<img class="vis" src="${x}">`).join("")}${c.svg?`<img class="vis" alt="diagram" src="data:image/svg+xml;utf8,${encodeURIComponent(c.svg)}">`:""}${(c.material||[]).map(m=>`${m.h?`<h3>${E(m.h)}</h3>`:""}<p style="white-space:pre-wrap">${E(m.p)}</p>`).join("")}`;let body;
+  if(!pre)body=`<h3>Step 1 — Pre-test</h3><p class="mu">Answer before studying. This is your starting point.</p>${quizHtml(c)}<button class="p" onclick="submitQuiz('${c.id}','pre')">Submit pre-test</button>`;
+  else if(!post)body=`<p>✅ Pre-test score: <b>${pc(pre)}%</b></p>${mat}<h3>Step 3 — Post-test</h3>${quizHtml(c)}<button class="p" onclick="submitQuiz('${c.id}','post')">Submit post-test</button>`;
+  else body=`<div class="grid"><div class="stat"><b>${pc(pre)}%</b><small>Before</small></div><div class="stat"><b>${pc(post)}%</b><small>After</small></div><div class="stat"><b>${pc(post)-pc(pre)>=0?"+":""}${pc(post)-pc(pre)} pts</b><small>Learning gain 🎉</small></div></div>${mat}`;
+  if(post)body+=`<h3>📝 ${E(c.assignment?.title||"Assignment")}</h3><p style="white-space:pre-wrap">${E(c.assignment?.task||"")}</p>${sub?`<div class="stat">Submitted ✅<br><span style="white-space:pre-wrap">${E(sub.text)}</span>${sub.fb?`<br><br><b>💬 Teacher feedback:</b> ${E(sub.fb)}`:""}<br><br><button onclick="delSub('${sub.id}')">🗑️ Delete &amp; resubmit</button></div>`:`<textarea id="as" placeholder="Write your answer…"></textarea><button class="p" onclick="submitAs('${c.id}')">Submit assignment</button>`}`;
+  app.innerHTML=`<button onclick="S.view=null;render()">← Back</button><div class="banner" style="background:${grad(c.title)}"><span>${icon(c.title)}</span><div><h2>${E(c.title)}</h2><small>${E(c.tname||"")} · ${E(c.subject||"")}</small></div></div><div class="steps">${["Pre-test","Study + post-test","Assignment"].map((s,i)=>`<div class="${i<(!pre?1:!post?2:3)?"d1":""}"><i></i>${i+1}. ${s}</div>`).join("")}</div><div class="card">${body}</div>`}
+async function submitQuiz(cid,type){const c=D.courses.find(c=>c.id===cid),ans=c.quiz.map((q,i)=>{const r=document.querySelector(`input[name=q${i}]:checked`);return r?+r.value:-1});
+  if(ans.includes(-1))return toast("Please answer every question");const score=ans.filter((a,i)=>a===c.quiz[i].a).length;
+  await save("attempts",S.user.id+"_"+cid+"_"+type,{inst:S.inst,sid:S.user.id,cid,type,score,total:c.quiz.length,at:Date.now()});toast(`Score: ${score}/${c.quiz.length}`);render();scrollTo(0,0)}
+async function submitAs(cid){const t=$("#as").value.trim();if(!t)return toast("Write something first");
+  await save("subs",S.user.id+"_"+cid,{inst:S.inst,sid:S.user.id,name:S.user.name,cid,text:t,at:Date.now()});toast("Submitted ✅");render()}
+init();
+</script></body></html>
